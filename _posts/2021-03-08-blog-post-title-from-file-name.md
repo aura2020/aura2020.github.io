@@ -1,32 +1,37 @@
-## Blog Post Title From First Header
+# What is Salesforce GraphQL API
 
-Due to a plugin called `jekyll-titles-from-headings` which is supported by GitHub Pages by default. The above header (in the markdown file) will be automatically used as the pages title.
+The Salesforce GraphQL API introduces a novel approach to data exchange, allowing clients to precisely specify the fields they need in the response. This addresses the common challenges associated with traditional REST APIs, such as under fetching (receiving insufficient data) and over fetching (receiving more data than necessary).
 
-If the file does not start with a header, then the post title will be derived from the filename.
+This API allows developers to interact with the Salesforce platform through GraphQL, a new API standard that enables declarative data fetching where a client can specify exactly what data it needs from an API.
 
-This is a sample blog post. You can talk about all sorts of fun things here.
+Instead of multiple endpoints that return fixed data structures, a GraphQL server only exposes a single endpoint and responds with precisely the data a client asked for.
 
----
+## Benefits of GraphQL
 
-### This is a header
+- **Better Performance**: Apps that call GraphQL are more performant than those that use traditional REST APIs. This is because they are able to reduce round trips to the server through retrieval of all needed data in one request.
+  
+- **More Efficient Data Fetching**: GraphQL allows you to specify exactly the data you need. This ensures you don't get more data than you need (overfetching) or you don't get less data than you need (underfetching).
+  
+- **Strong Type System**: GraphQL relies on a strongly-typed schema, which serves as a contract between the client and server. This schema defines the types of data that can be queried, ensuring increased predictability in API interactions. By enforcing strict typing, GraphQL minimizes errors, such as attempting to access non-existent fields or deserializing data into mismatched types, providing a more robust and reliable development experience.
+  
+- **More Flexibility**: GraphQL is more flexible to interact with APIs. You can request data from multiple sources in a single query. This can be used for building complex applications.
 
-#### Some T-SQL Code
+## How to Query Using GraphQL
 
-```tsql
-SELECT This, [Is], A, Code, Block -- Using SSMS style syntax highlighting
-    , REVERSE('abc')
-FROM dbo.SomeTable s
-    CROSS JOIN dbo.OtherTable o;
-```
-
-#### Some PowerShell Code
-
-```powershell
-Write-Host "This is a powershell Code block";
-
-# There are many other languages you can use, but the style has to be loaded first
-
-ForEach ($thing in $things) {
-    Write-Output "It highlights it using the GitHub style"
+```graphql
+query accounts {
+  uiapi {
+    query {
+      Account {
+        edges {
+          node {
+            Id
+            Name {
+              value
+            }
+          }
+        }
+      }
+    }
+  }
 }
-```
