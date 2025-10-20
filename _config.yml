@@ -20,14 +20,11 @@ linkedin_username: "markpaul-ngosia-802247118"
 #########################################################################################
 theme: "minima"
 
-rss: rss
-
 kramdown:
   syntax_highlighter_opts:
     disable: true
     
 plugins:
-  - jekyll-feed
   - jekyll-sitemap
 
 titles_from_headings:
